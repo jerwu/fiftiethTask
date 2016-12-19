@@ -1,21 +1,217 @@
 /* Base Application Styles */
 body {
   color: #fff;
-  background: #fff;
+  background: #eee;
+  font-size: 62.5%;
+}
+$bg-color:#EE7419;
+
+/*input:focus{
+  outline:none;
+}*/
+
+/* iconfont start */
+@font-face {
+  font-family: 'iconfont';  
+  src: url('//at.alicdn.com/t/font_r08reb6zrv841jor.eot');
+  src: url('//at.alicdn.com/t/font_r08reb6zrv841jor.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_r08reb6zrv841jor.woff') format('woff'),
+  url('//at.alicdn.com/t/font_r08reb6zrv841jor.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_r08reb6zrv841jor.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family: 'iconfont';
+  font-size: 1.3rem;
+  font-weight: 100;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale; 
+}
+/* iconfont end */
+
+/* navbar start */
+.navbar{
+  background-color: $bg-color;
+  padding: 0.5rem 0;
+
+  .container{
+    width: 1280px;
+    margin:0 auto;
+  }
+  .paperMg{
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  a{
+    margin:0 2rem ;
+    font-size: 1rem;
+
+    text-decoration: none;
+    color:#fff;
+  }
+}
+/* navbar end */
+
+/* content start */
+.content{
+  width: 100%;
+  height:100%;
+
+  .container{
+    width:60rem;
+    height:100%;
+    margin:0 auto;
+    margin-top: 3rem;
+
+    background-color: #fff;
+    
+    .btn{
+      margin:6rem -6rem;
+      padding:0.8rem 2.4rem;
+      font-size: 1.2rem;
+
+      position: relative;
+      left:50%;
+      
+      border-radius: 0.2rem;
+      display: inline-block;
+      
+      background-color: $bg-color;
+      cursor: pointer;
+
+      /*display: none;*/
+    }
+    .addPaper{
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      .iconfont{
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+/* content end */
+
+ /* MsgEdit start */
+ .paperEdit{
+  color:#666;
+  
+  
+  .title{
+    padding:2rem 0;
+    margin: 2rem;
+
+    border-bottom: 0.15rem solid #999;
+
+    .paperTitle{
+      width:100%;
+      padding:1rem 0;
+
+      font-size:1.3rem;
+      font-weight: 800;
+      text-align: center;
+
+      border:none;
+      &:hover{
+        background-color:#FEF1E8;
+        border:none;
+      }
+      &:focus{
+        background-color:#FEF1E8;
+        outline:none;
+      }
+    }
+  }
+  .questionOperate{
+    margin:0 2rem ;
+    border:0.1rem solid #999;
+  }
+  .optionsBar{
+    /*margin:0 2rem;*/
+    padding:1rem 0;
+    
+    font-size: 1rem;
+    text-align: center;
+
+    div{
+      width:5rem;
+      margin:0 1rem;
+      padding: 0.3rem 0.5rem;
+
+      border:1px solid black;
+      display: inline-block;
+      cursor:pointer;
+      
+      background-color: #eee;
+      border:0.1rem solid #999;
+
+      .iconfont{
+        padding:0 0.5rem ;
+        font-size:0.8rem;
+      }
+    }
+  }
+  .paperQuestion{
+    /*margin:0 2rem ;*/
+    padding:2rem 0;
+
+    font-size: 1rem;
+    text-align: center; 
+
+    background-color: #eee;
+    
+
+    cursor:pointer;
+    .iconfont{
+      padding-right: 1.5rem;
+    }
+  }
+
+  .paperBottom{
+    margin: 2rem;
+    padding: 2rem 5rem 3rem 5rem;
+    border-top: 0.15rem solid #999;
+    
+    position: relative;
+
+    .deadline{
+      font-size: 1rem;
+    }
+    .date{
+      margin-left: 1rem;
+    }
+
+    .paperFinished{
+      display: inline-block;
+      position: absolute;
+      right: 5rem;
+      top:2rem;
+
+      .savePaper,
+      .commitPaper{
+        padding:0.4rem 1rem;
+        margin:0 1rem 0 0;
+        
+        font-size: 1rem;
+        color:#666;
+
+        border:0.1rem solid #999;
+        border-radius: 0.2rem;
+
+        background-color: #fff;
+
+        cursor: pointer;
+
+        &:focus{
+          color:#fff;
+          background-color:$bg-color;
+          outline:none;
+        }
+      }
+    }
+  }
 }
 
-.index img {
-  margin: 40px auto;
-  border-radius: 4px;
-  background: #fff;
-  display: block;
-}
-
-.index .notice {
-  margin: 20px auto;
-  padding: 15px 0;
-  text-align: center;
-  border: 1px solid #000;
-  border-width: 1px 0;
-  background: #666;
-}
+ /* MsgEdit end */

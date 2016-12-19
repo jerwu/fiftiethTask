@@ -1,32 +1,46 @@
 require('normalize.css/normalize.css');
-require('styles/App.css');
+require('styles/App.scss');
 // require('styles/boostrap.min.css');
 // require('bootstrap')
 
 import React from 'react';
+import ReactDom from 'react-dom';
 
 //import Link component
-import { Link } from 'react-router'
+// import { Link } from 'react-router'
 
 import Navbar from './Navbar'
+import MsgEdit from './MsgEdit'
 
 class AppComponent extends React.Component {
-  render() {
-    return (
-      	<div>
-      		<Navbar/>
-			<div className="content">
-				<div className="container">
-					<button className="btn btn-default">
-						<Link to="/MsgEdit"><span className="glyphicon glyphicon-plus"></span>新建问卷</Link>
-					</button>
+	handleClick = (ev) => {
+		let btnDom = ReactDom.findDOMNode(this.refs.btn),
+			containerDom = btnDom.parentNode;
 
-					{this.props.children}
+		btnDom.style.display = 'none';
+
+		ev.stopPropagation();
+		ev.preventDefault();
+	}
+
+  	render() {
+	    return (
+	      	<div>
+	      		<Navbar/>
+				<div className="content">
+					<div className="container">
+						<div ref="btn" onClick={this.handleClick} className="btn">
+							<a className="addPaper"><span className="iconfont">&#xe64a;</span>新建问卷</a>
+						</div>
+
+						<MsgEdit/>
+
+						{this.props.children}
+					</div>
 				</div>
-			</div>
-      	</div>
-    );
-  }
+	      	</div>
+	    );
+  	}
 }
 
 AppComponent.defaultProps = {
