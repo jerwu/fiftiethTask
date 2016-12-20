@@ -11,11 +11,12 @@ import ReactDom from 'react-dom';
 
 import Navbar from './Navbar'
 import MsgEdit from './MsgEdit'
+import QuestionnaireList from './QuestionnaireList'
 
 class AppComponent extends React.Component {
 	handleClick = (ev) => {
-		let btnDom = ReactDom.findDOMNode(this.refs.btn),
-			containerDom = btnDom.parentNode;
+		let btnDom = ReactDom.findDOMNode(this.refs.btn);
+			// containerDom = btnDom.parentNode;
 
 		btnDom.style.display = 'none';
 
@@ -29,6 +30,7 @@ class AppComponent extends React.Component {
 	      		<Navbar/>
 				<div className="content">
 					<div className="container">
+						<QuestionnaireList/>
 						<div ref="btn" onClick={this.handleClick} className="btn">
 							<a className="addPaper"><span className="iconfont">&#xe64a;</span>新建问卷</a>
 						</div>

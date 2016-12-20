@@ -43,7 +43,7 @@ class MsgEdit extends React.Component{
 				
 				<div className="paperBottom">
 					<div className="deadline">
-						问题截止日期<input type="date" className="date" value="2017-01-15" name="deadline"/>
+						问卷截止日期<input type="date" className="date" defaultValue="2017-01-15" name="deadline"/>
 					</div>
 					<div className="paperFinished">
 						<input type="button" className="savePaper" value="保存问卷"/>

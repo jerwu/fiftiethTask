@@ -1,23 +1,29 @@
 /* Base Application Styles */
 body {
-  color: #fff;
+  color: #555;
   background: #eee;
   font-size: 62.5%;
 }
-$bg-color:#EE7419;
-
+$bg-color: #EE7419;
+$hover-color: #FEF1E8;
+li{
+  list-style: none;
+}
 /*input:focus{
   outline:none;
 }*/
+button:focus{
+  outline:none;
+}
 
 /* iconfont start */
 @font-face {
-  font-family: 'iconfont';  
-  src: url('//at.alicdn.com/t/font_r08reb6zrv841jor.eot');
-  src: url('//at.alicdn.com/t/font_r08reb6zrv841jor.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_r08reb6zrv841jor.woff') format('woff'),
-  url('//at.alicdn.com/t/font_r08reb6zrv841jor.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_r08reb6zrv841jor.svg#iconfont') format('svg');
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_5o7isvt3f0n0o1or.eot');
+  src: url('//at.alicdn.com/t/font_5o7isvt3f0n0o1or.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_5o7isvt3f0n0o1or.woff') format('woff'),
+  url('//at.alicdn.com/t/font_5o7isvt3f0n0o1or.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_5o7isvt3f0n0o1or.svg#iconfont') format('svg');
 }
 .iconfont{
   font-family: 'iconfont';
@@ -27,6 +33,7 @@ $bg-color:#EE7419;
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale; 
+  /*color:#fff;*/
 }
 /* iconfont end */
 
@@ -115,11 +122,11 @@ $bg-color:#EE7419;
 
       border:none;
       &:hover{
-        background-color:#FEF1E8;
+        background-color:$hover-color;
         border:none;
       }
       &:focus{
-        background-color:#FEF1E8;
+        background-color:$hover-color;
         outline:none;
       }
     }
@@ -213,5 +220,111 @@ $bg-color:#EE7419;
     }
   }
 }
-
  /* MsgEdit end */
+
+ /* QuestionnaireList start */
+ .ListContainer{
+  width:60rem;
+  height:100%;
+  margin:0 auto;
+  margin-top: 3rem;
+
+  background-color: #fff;
+  .liTitle{
+    background-color: #eee;
+    overflow: hidden;
+    li{
+      padding:1rem 0 ;
+      font-size: 1rem;
+
+      float:left;
+    }
+    @at-root{
+      .radio{
+        margin:0 -1rem;
+      }
+      .title{
+        width: 20rem;
+        margin-left:2rem;
+      }
+      .time{
+        width: 10rem;
+      }
+      .statu{
+        width: 7rem;
+      }
+      .operate{
+        width: 9rem;
+      }
+      .addBtn{
+        width: 8rem;
+        margin-top: -0.3rem;
+        button{
+          padding:0.3rem 0.5rem;
+          background-color:$bg-color;
+          color:#fff;
+
+          border:0.1rem solid orange;
+          cursor: pointer;
+          .iconfont{
+            padding :1rem 0.3rem;
+            font-size: 90%;
+          }
+        }
+      }
+    } 
+  }
+  .listContent{
+    margin-top:-0.75rem;
+    .list{
+      overflow: hidden;
+      &:hover{
+        background-color:$hover-color;
+      }
+    }
+    ul{
+      margin: 0 1rem;
+      border-bottom:0.1rem solid #999;
+      background-color: #fff;
+
+      .title{
+        margin-left: 1rem;
+      }
+      .time{
+        font-size: 0.8rem;
+      }
+      .btnContainer{
+        padding-left: 2.2rem;
+      }
+    }
+    .listBottom{
+      ul{
+        border:none;
+        input{
+          margin-right: 0.3rem;
+        }
+      }
+      @at-root{
+        .btn{
+          width:4rem;
+          text-align: center;
+          display: inline-block;
+          border:0.1rem solid #999;
+          padding:0.2rem 0;
+          border-radius: 0.2rem;
+          font-size: 0.9rem;
+          background-color: #fff;
+
+          margin: 0 0.25rem;
+          cursor: pointer;
+          &:focus{
+            background-color: $bg-color;
+            color:#fff;
+          }
+        }
+      }
+      padding-bottom: 3rem;
+    }
+  }
+ }
+ /* QuestionnaireList end */
