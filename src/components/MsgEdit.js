@@ -29,11 +29,46 @@ class MsgEdit extends React.Component{
 				</div>
 
 				<div className="questionContent">
+					<div className="questionList">
+						<div className="question1 question">
+							<h4>Q1 单选题</h4>
+							<ul>
+								<li><input type="radio" className="quesRadio"/>选项一</li>
+								<li><input type="radio" className="quesRadio"/>选项二</li>
+							</ul>
+							<div className="moveBtn">
+								<a href="javascript:;">上移</a>
+								<a href="javascript:;">下移</a>
+								<a href="javascript:;">复用</a>
+								<a href="javascript:;">删除</a>
+							</div>
+						</div>
+						<div className="question1 question">
+							<h4>Q2 多选题</h4>
+							<ul>
+								<li><input type="checkBox" />选项一</li>
+								<li><input type="checkBox" />选项二</li>
+								<li><input type="checkBox" />选项三</li>
+								<li><input type="checkBox" />选项四</li>
+							</ul>
+							<div className="moveBtn">
+								<a href="javascript:;">上移</a>
+								<a href="javascript:;">下移</a>
+								<a href="javascript:;">复用</a>
+								<a href="javascript:;">删除</a>
+							</div>
+						</div>
+						<div className="question1 question">
+							<h4>Q2 多选题</h4>
+							<div className="multiCheck"><input type="checkBox"/>此题是否必填</div>
+							<input type="text"/>
+						</div>
+					</div>
 					<div className="questionOperate">
 						<div className="optionsBar">
-							<div className="radioBtn"><span className="iconfont">&#xe6cc;</span>单选</div>
-							<div className="multiCheckBtn"><span className="iconfont">&#xe62a;</span>多选</div>
-							<div className="textBtn"><span className="iconfont">&#xe600;</span>文本题</div>
+							<button className="radioBtn"><span className="iconfont">&#xe6cc;</span>单选</button>
+							<button className="multiCheckBtn"><span className="iconfont">&#xe62a;</span>多选</button>
+							<button className="textBtn"><span className="iconfont">&#xe600;</span>文本题</button>
 						</div>
 						<div className="paperQuestion" onClick={this.addQuestion} ref="question">
 							<span className="iconfont">&#xe64a;</span>添加问题

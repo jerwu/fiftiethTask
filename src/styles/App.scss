@@ -42,7 +42,7 @@ button:focus{
   background-color: $bg-color;
   padding: 0.5rem 0;
 
-  .container{
+  .navbarContainer{
     width: 1280px;
     margin:0 auto;
   }
@@ -65,7 +65,7 @@ button:focus{
   width: 100%;
   height:100%;
 
-  .container{
+  .appContainer{
     width:60rem;
     height:100%;
     margin:0 auto;
@@ -73,7 +73,7 @@ button:focus{
 
     background-color: #fff;
     
-    .btn{
+    .appBtn{
       margin:6rem -6rem;
       padding:0.8rem 2.4rem;
       font-size: 1.2rem;
@@ -104,8 +104,7 @@ button:focus{
  /* MsgEdit start */
  .paperEdit{
   color:#666;
-  
-  
+
   .title{
     padding:2rem 0;
     margin: 2rem;
@@ -131,6 +130,57 @@ button:focus{
       }
     }
   }
+  .questionContent{
+    margin:0 2rem ;
+
+    .question{
+      position: relative;
+      font-size: 1rem;
+      margin: 0 2rem;
+      padding: 0.1rem 1.5rem 2rem 1.5rem;
+      li{
+        margin: 0.6rem 0;
+      }
+      input{
+        margin-right: 0.5rem;
+
+      }
+      input[type="text"]{
+        margin-left: 2.6rem;
+        width:30rem;
+        height: 6rem;
+      }
+      input[type="radio"],
+      input[type="checkBox"]{
+        background-color: #fff;
+      }
+      .multiCheck{
+        position: absolute;
+        top: 1.5rem;
+        right: 1rem;
+      }
+      &:hover{
+        background-color: $hover-color;
+      }
+      .moveBtn{
+        position: absolute;
+        right:1.5rem;
+        bottom: 1rem;
+
+        a{
+          margin:0 0.5rem;
+          color:#666;
+          text-decoration: none;
+
+          &:active,
+          &:hover
+          {
+            color:$bg-color;
+          }
+        }
+      }
+    }
+  }
   .questionOperate{
     margin:0 2rem ;
     border:0.1rem solid #999;
@@ -142,21 +192,27 @@ button:focus{
     font-size: 1rem;
     text-align: center;
 
-    div{
-      width:5rem;
+    .radioBtn,
+    .multiCheckBtn,
+    .textBtn{
+      width:6rem;
       margin:0 1rem;
-      padding: 0.3rem 0.5rem;
+      padding: 0.5rem;
 
-      border:1px solid black;
       display: inline-block;
       cursor:pointer;
       
       background-color: #eee;
       border:0.1rem solid #999;
+      border-radius: 0.15rem;
 
       .iconfont{
         padding:0 0.5rem ;
         font-size:0.8rem;
+      }
+      &:focus{
+        background-color: $bg-color;
+        color:#fff;
       }
     }
   }
@@ -243,7 +299,7 @@ button:focus{
       .radio{
         margin:0 -1rem;
       }
-      .title{
+      .msgTitle{
         width: 20rem;
         margin-left:2rem;
       }
@@ -287,7 +343,7 @@ button:focus{
       border-bottom:0.1rem solid #999;
       background-color: #fff;
 
-      .title{
+      .msgTitle{
         margin-left: 1rem;
       }
       .time{

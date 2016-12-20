@@ -8,7 +8,7 @@ export default React.createClass({
 	render(){
 		return (
 			<div className="navbar">
-				<nav className="container">
+				<nav className="navbarContainer">
 					<Link to="/" className="paperMg">
 						<span className="iconfont">&#xe6a8;</span>	问卷管理
 					</Link>

@@ -7,11 +7,11 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 //import Link component
-// import { Link } from 'react-router'
+import { Link } from 'react-router'
 
 import Navbar from './Navbar'
-import MsgEdit from './MsgEdit'
-import QuestionnaireList from './QuestionnaireList'
+// import MsgEdit from './MsgEdit'
+// import QuestionnaireList from './QuestionnaireList'
 
 class AppComponent extends React.Component {
 	handleClick = (ev) => {
@@ -29,13 +29,10 @@ class AppComponent extends React.Component {
 	      	<div>
 	      		<Navbar/>
 				<div className="content">
-					<div className="container">
-						<QuestionnaireList/>
-						<div ref="btn" onClick={this.handleClick} className="btn">
-							<a className="addPaper"><span className="iconfont">&#xe64a;</span>新建问卷</a>
+					<div className="appContainer">
+						<div ref="btn" onClick={this.handleClick} className="appBtn">
+							<Link to="/msgEdit" className="addPaper"><span className="iconfont">&#xe64a;</span>新建问卷</Link>
 						</div>
-
-						<MsgEdit/>
 
 						{this.props.children}
 					</div>
@@ -49,3 +46,5 @@ AppComponent.defaultProps = {
 };
 
 export default AppComponent;
+// <MsgEdit/>
+// <QuestionnaireList/>
