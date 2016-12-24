@@ -5,6 +5,18 @@ import { Link } from 'react-router'
 import Navbar from './Navbar'
 
 class QuestionnaireList extends React.Component{
+	listDelete = ev => {
+		let result = confirm('确认要删除此问卷？');
+		if (result) {
+			alert('delete');
+		}else{
+			alert('not delete');
+		}
+
+		ev.stopPropagation();
+		ev.preventDefault();
+	}
+
 	render() {
 		return (
 			<div>
@@ -26,7 +38,7 @@ class QuestionnaireList extends React.Component{
 								<li className="statu">发布中</li>
 								<li className="btnContainer">
 									<button className="btn">编辑</button>
-									<button className="btn">删除</button>
+									<button className="btn" ref="listDelete" onClick={this.listDelete}>删除</button>
 									<button className="btn">查看数据</button>
 								</li>
 							</ul>
@@ -39,7 +51,7 @@ class QuestionnaireList extends React.Component{
 								<li className="statu">发布中</li>
 								<li className="btnContainer">
 									<button className="btn">编辑</button>
-									<button className="btn">删除</button>
+									<button className="btn" ref="listDelete" onClick={this.listDelete}>删除</button>
 									<button className="btn">查看数据</button>
 								</li>
 							</ul>
@@ -52,7 +64,7 @@ class QuestionnaireList extends React.Component{
 								<li className="statu">发布中</li>
 								<li className="btnContainer">
 									<button className="btn">编辑</button>
-									<button className="btn">删除</button>
+									<button className="btn" ref="listDelete" onClick={this.listDelete}>删除</button>
 									<button className="btn">查看数据</button>
 								</li>
 							</ul>
