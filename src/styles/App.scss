@@ -28,6 +28,12 @@ button:focus{
     outline: 0;
   }
 }*/
+input[type=range] {   
+  -webkit-appearance: none;
+}   
+input[type=range]:focus {   
+  outline: none;   
+} 
 input[type=range]::-webkit-slider-runnable-track {   
   width: 100%;   
   height: 0.7rem;   
@@ -40,7 +46,12 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=range]:focus::-webkit-slider-runnable-track {   
   background: #367ebd;   
 }   
-    
+input[type=range]::-webkit-slider-thumb {   
+  border: 0;   
+  background: transparent;   
+  cursor: pointer;   
+  -webkit-appearance: none;   
+}  
 input[type=range]::-moz-range-track {   
   width: 100%;   
   height: 0.7rem;   
@@ -48,7 +59,12 @@ input[type=range]::-moz-range-track {
   background: $bg-color;   
   border-radius: 0.1rem;   
   border: 0.1rem solid #aaa;   
-}   
+} 
+input[type=range]::-moz-range-thumb {   
+  border: 0;   
+  background: transparent;   
+  cursor: pointer;   
+}  
     
 input[type=range]::-ms-track {   
   width: 100%;   
@@ -75,6 +91,11 @@ input[type=range]::-ms-fill-upper {
 input[type=range]:focus::-ms-fill-upper {   
   background: #367ebd;   
 } 
+input[type=range]::-ms-thumb {   
+  border: 0;   
+  background: transparent;   
+  cursor: pointer;   
+}   
 
 /* iconfont start */
 @font-face {
@@ -412,9 +433,9 @@ input[type=range]:focus::-ms-fill-upper {
     margin-top:-0.75rem;
     .list{
       overflow: hidden;
-      &:hover{
+      /*&:hover{
         background-color:$hover-color;
-      }
+      }*/
     }
     ul{
       margin: 0 1rem;
@@ -430,6 +451,9 @@ input[type=range]:focus::-ms-fill-upper {
       }
       .btnContainer{
         padding-left: 2.2rem;
+      }
+      &:hover{
+        background-color:$hover-color;
       }
     }
     .listBottom{

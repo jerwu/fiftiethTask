@@ -23,31 +23,31 @@ export default React.createClass({
 							<h4>Q1 单选题</h4>
 							<ul>
 								<div className="dataProportion">数据占比</div>
-								<li>选项一 <div className="dataBar"><input type="range" min="0" max="100" value="85"/>85%</div></li>
-								<li>选项二<div className="dataBar"><input type="range" min="0" max="100" value="15"/>15%</div></li>
+								<li>选项一 <div className="dataBar"><input type="range" min="0" max="100" defaultValue="85"/>85%</div></li>
+								<li>选项二<div className="dataBar"><input type="range" min="0" max="100" defaultValue="15"/>15%</div></li>
 							</ul>
 						</div>
 						<div className="listBlock">
 							<h4>Q2 多选题</h4>
 							<ul>
 								<div className="dataProportion">数据占比</div>
-								<li>选项一 <div className="dataBar"><input type="range" min="0" max="100" value="85"/>85%</div></li>
-								<li>选项二<div className="dataBar"><input type="range" min="0" max="100" value="15"/>15%</div></li>
+								<li>选项一 <div className="dataBar"><input type="range" min="0" max="100" defaultValue="85"/>85%</div></li>
+								<li>选项二<div className="dataBar"><input type="range" min="0" max="100" defaultValue="15"/>15%</div></li>
 							</ul>
 						</div>
 						<div className="listBlock">
 							<h4>Q3 单选题</h4>
 							<ul>
 								<div className="dataProportion">数据占比</div>
-								<li>选项一 <div className="dataBar"><input type="range" min="0" max="100" value="85"/>85%</div></li>
-								<li>选项二<div className="dataBar"><input type="range" min="0" max="100" value="15"/>15%</div></li>
+								<li>选项一 <div className="dataBar"><input type="range" min="0" max="100" defaultValue="85"/>85%</div></li>
+								<li>选项二<div className="dataBar"><input type="range" min="0" max="100" defaultValue="15"/>15%</div></li>
 							</ul>
 						</div>
 						<div className="listBlock">
 							<h4>Q4 文本题</h4>
 							<ul>
 								<div className="dataProportion">数据占比</div>
-								<li>&nbsp;<div className="dataBar"><input type="range" min="0" max="100" value="85"/>85%</div></li>
+								<li>&nbsp;<div className="dataBar"><input type="range" min="0" max="100" defaultValue="85"/>85%</div></li>
 							</ul>
 						</div>
 							
