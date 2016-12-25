@@ -13,10 +13,10 @@ class SingleQuestion extends React.Component{
 	render() {
 		return (
 			<div className="singleQuestion question">
-				<h4>Q1 单选题</h4>
+				<h4>Q1 <input type="text" placeholder="单选题"/></h4>
 				<ul>
-					<li><input type="radio" className="quesRadio"/>选项一</li>
-					<li><input type="radio" className="quesRadio"/>选项二</li>
+					<li><input type="radio" className="quesRadio"/><input type="text" placeholder="选项一"/></li>
+					<li><input type="radio" className="quesRadio"/><input type="text" placeholder="选项二"/></li>
 				</ul>
 				<div className="moveBtn">
 					<a href="javascript:;" onClick={this.props.moveUp}>上移</a>
@@ -33,12 +33,12 @@ class MultiQuestion extends React.Component{
 	render() {
 		return (
 			<div className="multiQuestion question">
-				<h4>Q2 多选题</h4>
+				<h4>Q2 <input type="text" placeholder="多选题"/></h4>
 				<ul>
-					<li><input type="checkBox" />选项一</li>
-					<li><input type="checkBox" />选项二</li>
-					<li><input type="checkBox" />选项三</li>
-					<li><input type="checkBox" />选项四</li>
+					<li><input type="checkBox" /><input type="text" placeholder="选项一"/></li>
+					<li><input type="checkBox" /><input type="text" placeholder="选项二"/></li>
+					<li><input type="checkBox" /><input type="text" placeholder="选项三"/></li>
+					<li><input type="checkBox" /><input type="text" placeholder="选项四"/></li>
 				</ul>
 				<div className="moveBtn">
 					<a href="javascript:;" onClick={this.props.moveUp}>上移</a>

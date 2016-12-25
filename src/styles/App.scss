@@ -209,9 +209,13 @@ input[type=range]:focus::-ms-fill-upper {
 
       }
       input[type="text"]{
-        margin-left: 2.6rem;
+        /*margin-left: 2.6rem;
         width:30rem;
-        height: 6rem;
+        height: 6rem;*/
+        border:0;
+        &:focus{
+          outline:none;
+        }
       }
       input[type="radio"],
       input[type="checkBox"]{
@@ -224,6 +228,12 @@ input[type=range]:focus::-ms-fill-upper {
       }
       &:hover{
         background-color: $hover-color;
+        input[type="text"]{
+          background-color: $hover-color;
+          &:focus{
+          background-color: #fff;
+        }
+        }
       }
       .moveBtn{
         position: absolute;
@@ -416,6 +426,7 @@ input[type=range]:focus::-ms-fill-upper {
       }
       .time{
         font-size: 0.8rem;
+        margin-top:0.2rem;
       }
       .btnContainer{
         padding-left: 2.2rem;
