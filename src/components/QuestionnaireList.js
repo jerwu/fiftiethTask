@@ -39,7 +39,7 @@ class QuestionnaireList extends React.Component{
 								<li className="btnContainer">
 									<button className="btn">编辑</button>
 									<button className="btn" ref="listDelete" onClick={this.listDelete}>删除</button>
-									<button className="btn">查看数据</button>
+									<button className="btn"><Link to="/dataCheck">查看数据</Link></button>
 								</li>
 							</ul>
 						</div>
@@ -52,7 +52,7 @@ class QuestionnaireList extends React.Component{
 								<li className="btnContainer">
 									<button className="btn">编辑</button>
 									<button className="btn" ref="listDelete" onClick={this.listDelete}>删除</button>
-									<button className="btn">查看数据</button>
+									<button className="btn"><Link to="/dataCheck">查看数据</Link></button>
 								</li>
 							</ul>
 						</div>
@@ -65,7 +65,7 @@ class QuestionnaireList extends React.Component{
 								<li className="btnContainer">
 									<button className="btn">编辑</button>
 									<button className="btn" ref="listDelete" onClick={this.listDelete}>删除</button>
-									<button className="btn">查看数据</button>
+									<button className="btn"><Link to="/dataCheck">查看数据</Link></button>
 								</li>
 							</ul>
 						</div>
@@ -76,7 +76,6 @@ class QuestionnaireList extends React.Component{
 							</ul>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		);

@@ -15,9 +15,9 @@ ReactDOM.render((
 				<Router history={browserHistory}>
 					<Route path="/" component={QuestionnaireList}/>
 					<Route path="/app" component={App}>
-						<Route path="/dataCheck" component={DataCheck}/>
 						<Route path="/msgEdit" component={MsgEdit}/>
 					</Route>
+					<Route path="/dataCheck" component={DataCheck}/>
 				</Router>
 				),document.getElementById('app'));
 // <IndexRoute component={QuestionnaireList}/>
