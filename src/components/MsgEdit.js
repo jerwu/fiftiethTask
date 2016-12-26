@@ -12,7 +12,7 @@ import ReactDom from 'react-dom';
 class SingleQuestion extends React.Component{
 	render() {
 		return (
-			<div className="singleQuestion question" data-value={this.props.index}>
+			<div className="singleQuestion question" value={this.props.index}>
 				<h4>Q{this.props.index} <input type="text" placeholder="单选题"/></h4>
 				<ul>
 					<li><input type="radio" className="quesRadio"/><input type="text" placeholder="选项一"/></li>
@@ -32,7 +32,7 @@ class SingleQuestion extends React.Component{
 class MultiQuestion extends React.Component{
 	render() {
 		return (
-			<div className="multiQuestion question" data-value={this.props.index}>
+			<div className="multiQuestion question" value={this.props.index}>
 				<h4>Q{this.props.index} <input type="text" placeholder="多选题"/></h4>
 				<ul>
 					<li><input type="checkBox" /><input type="text" placeholder="选项一"/></li>
@@ -54,7 +54,7 @@ class MultiQuestion extends React.Component{
 class TextQuestion extends React.Component{
 	render() {
 		return (
-			<div className="TextQuestion question" data-value={this.props.index}>
+			<div className="TextQuestion question" value={this.props.index}>
 				<h4>Q{this.props.index} <input type="text" placeholder="文本题"/></h4>
 				<div className="multiCheck"><input type="checkBox"/>此题是否必填</div>
 				<textarea rows="6" cols="60"></textarea>
@@ -73,9 +73,10 @@ class MsgEdit extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			questionListArr: []
+			questionListArr: [],
+			key: 0
 		};
-		this.key = 0;
+		// this.key = 0;
 	}
 
 	addQuestion = (ev) => {
@@ -96,7 +97,11 @@ class MsgEdit extends React.Component{
 			alert('not publish');
 		}
 	}
-
+	/*
+	 *通过DOM操作来移动、复用、删除问题
+	 *存在的问题：过渡以来DOM操作，不符合React的设计思想
+	 *			  复用时采用节点克隆操作，即使时深复制仍然无法物质节点的事件处理程序
+	 */
 	// moveUp = ev => {
 	// 	alert('moveUp');
 	// 	let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
@@ -114,88 +119,157 @@ class MsgEdit extends React.Component{
 	// 	ev.stopPropagation();
 	// 	ev.preventDefault();
 	// }
+
+	// moveUp = ev => {
+	// 	alert('moveUp');
+	// 	let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
+	// 		currentNode = ev.target.parentNode.parentNode;
+	// 	if (questionListDom.firstChild != currentNode) {
+	// 		 questionListDom.insertBefore(currentNode,currentNode.previousSibling);
+	// 	}
+	// 	ev.stopPropagation();
+	// 	ev.preventDefault();
+	// }
+
+	// moveDown = () => {
+	// 	let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
+	// 		currentNode = ev.target.parentNode.parentNode;
+	// 	if (questionListDom.lastChild == currentNode || questionListDom.childNodes.length ==1) {
+	// 		alert('can\'t moveDown');
+	// 	}
+	// 	else{
+	// 		questionListDom.insertBefore(currentNode,currentNode.nextSibling.nextSibling);
+	// 	}
+
+	// 	ev.stopPropagation();
+	// 	ev.preventDefault();
+	// }
+
+	// reUse = ev => {
+	// 	let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
+	// 		currentNode = ev.target.parentNode.parentNode,
+	// 		cloneNodes = currentNode.cloneNode(true);		//无法克隆子节点的事件处理程序，jquery的$().clone(true)可以
+
+	// 		questionListDom.insertBefore(cloneNodes,currentNode.nextSibling);
+	// 	ev.stopPropagation();
+	// 	ev.preventDefault();
+	// }
+
+	// deleteQuestion = ev => {
+	// 	alert('deleteQuestion');
+	// 	let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
+	// 		currentNode = ev.target.parentNode.parentNode;
+	// 	questionListDom.removeChild(currentNode);
+
+	// 	ev.stopPropagation();
+	// 	ev.preventDefault();
+	// }
+
+	/*
+	 *存在问题：
+	 *1、上移：把Q2上移到Q1位置后，Q1处于Q2原先的位置不能再上移
+	 *2、复用：一、复用后的问题不会更改顺序；二、复用后再删除问题，会把复用出来的问题连同原问题一并删除，不管复用的多少个
+	 */
 	moveUp = (ev) => {
 		alert('moveUp');
+		
 		let	questionListArr = this.state.questionListArr,
-			index = ev.target.parentNode.parentNode.getAttribute('data-value');
-		if (questionListArr.length != 1) {
+			index = ev.target.parentNode.parentNode.getAttribute('value');
 			alert(index);
-			let node = questionListArr[index-1];
-			questionListArr.push(node);
+		if (questionListArr.length != 1) {
+			let node = questionListArr.splice(index-1,1);
+			questionListArr.splice(index-2,0,node);
 		}
 		this.setState({
 			questionListArr:questionListArr
 		});
 	}
 
-	moveDown = ev => {
-		let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
-			currentNode = ev.target.parentNode.parentNode;
-		if (questionListDom.lastChild == currentNode || questionListDom.childNodes.length ==1) {
+	moveDown = (ev) => {
+		alert('moveDown');
+		let	questionListArr = this.state.questionListArr,
+			index = ev.target.parentNode.parentNode.getAttribute('value');
+			// index = this.state.key;
+			alert(index);
+		if (questionListArr.length == 1 || index == questionListArr.length) {
 			alert('can\'t moveDown');
+		}else{
+			let node = questionListArr.splice(index-1,1);
+			questionListArr.splice(index,0,node);
 		}
-		else{
-			questionListDom.insertBefore(currentNode,currentNode.nextSibling.nextSibling);
-		}
-
-		ev.stopPropagation();
-		ev.preventDefault();
+		this.setState({
+			questionListArr:questionListArr
+		});
 	}
 
-	reUse = ev => {
-		let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
-			currentNode = ev.target.parentNode.parentNode,
-			cloneNodes = currentNode.cloneNode(true);		//无法克隆子节点的事件处理程序，jquery的$().clone(true)可以
-
-			questionListDom.insertBefore(cloneNodes,currentNode.nextSibling);
-		ev.stopPropagation();
-		ev.preventDefault();
+	reUse = (ev) => {
+		alert('reUse');
+		let	questionListArr = this.state.questionListArr,
+			index = ev.target.parentNode.parentNode.getAttribute('value');
+		if (questionListArr.length != 1) {
+			let node = questionListArr.splice(index-1,1);
+			questionListArr.splice(index-1,0,[node,node]);
+		}
+		this.setState({
+			questionListArr:questionListArr
+		});
 	}
-
 	deleteQuestion = ev => {
 		alert('deleteQuestion');
-		let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
-			currentNode = ev.target.parentNode.parentNode;
-		questionListDom.removeChild(currentNode);
+		let	questionListArr = this.state.questionListArr,
+			index = ev.target.parentNode.parentNode.getAttribute('value');
+		questionListArr.splice(index-1,1)
 
-		ev.stopPropagation();
-		ev.preventDefault();
+		this.setState({
+			questionListArr:questionListArr
+		});
 	}
 
-	addRadioBox = ev => {
+	
+
+	addRadioBox = () => {
 		let questionListArr = this.state.questionListArr;
-		questionListArr.push(<SingleQuestion key={++this.key} index={questionListArr.length+1} moveUp={this.moveUp} moveDown={this.moveDown} reUse={this.reUse} deleteQuestion={this.deleteQuestion}/>)
+		questionListArr.push(<SingleQuestion 	key={++this.state.key}
+												index={questionListArr.length+1}
+												moveUp={this.moveUp}
+												moveDown={this.moveDown}
+												reUse={this.reUse}
+												deleteQuestion={this.deleteQuestion}/>)
 		
 
 		this.setState({
 			questionListArr:questionListArr
 		});
-		ev.stopPropagation();
-		ev.preventDefault();
 	}
 
-	addCheckBox = ev => {
+	addCheckBox = () => {
 		let questionListArr = this.state.questionListArr;
-		questionListArr.push(<MultiQuestion key={++this.key} index={questionListArr.length+1} moveUp={this.moveUp} moveDown={this.moveDown} reUse={this.reUse} deleteQuestion={this.deleteQuestion}/>)
+		questionListArr.push(<MultiQuestion 	key={++this.state.key}
+												index={questionListArr.length+1}
+												moveUp={this.moveUp}
+												moveDown={this.moveDown}
+												reUse={this.reUse}
+												deleteQuestion={this.deleteQuestion}/>)
 		
 		
 		this.setState({
 			questionListArr:questionListArr
 		});
-		ev.stopPropagation();
-		ev.preventDefault();
 	}
 
-	addTextBox = ev => {
+	addTextBox = () => {
 		let questionListArr = this.state.questionListArr;
-		questionListArr.push(<TextQuestion key={++this.key} index={questionListArr.length+1} moveUp={this.moveUp} moveDown={this.moveDown} reUse={this.reUse} deleteQuestion={this.deleteQuestion}/>)
+		questionListArr.push(<TextQuestion  	key={++this.state.key}
+												index={questionListArr.length+1}
+												moveUp={this.moveUp}
+												moveDown={this.moveDown}
+												reUse={this.reUse}
+												deleteQuestion={this.deleteQuestion}/>)
 		
 		
 		this.setState({
 			questionListArr:questionListArr
 		});
-		ev.stopPropagation();
-		ev.preventDefault();
 	}
 
 	render(){
