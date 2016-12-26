@@ -12,8 +12,8 @@ import ReactDom from 'react-dom';
 class SingleQuestion extends React.Component{
 	render() {
 		return (
-			<div className="singleQuestion question">
-				<h4>Q1 <input type="text" placeholder="单选题"/></h4>
+			<div className="singleQuestion question" data-value={this.props.index}>
+				<h4>Q{this.props.index} <input type="text" placeholder="单选题"/></h4>
 				<ul>
 					<li><input type="radio" className="quesRadio"/><input type="text" placeholder="选项一"/></li>
 					<li><input type="radio" className="quesRadio"/><input type="text" placeholder="选项二"/></li>
@@ -32,8 +32,8 @@ class SingleQuestion extends React.Component{
 class MultiQuestion extends React.Component{
 	render() {
 		return (
-			<div className="multiQuestion question">
-				<h4>Q2 <input type="text" placeholder="多选题"/></h4>
+			<div className="multiQuestion question" data-value={this.props.index}>
+				<h4>Q{this.props.index} <input type="text" placeholder="多选题"/></h4>
 				<ul>
 					<li><input type="checkBox" /><input type="text" placeholder="选项一"/></li>
 					<li><input type="checkBox" /><input type="text" placeholder="选项二"/></li>
@@ -54,10 +54,10 @@ class MultiQuestion extends React.Component{
 class TextQuestion extends React.Component{
 	render() {
 		return (
-			<div className="TextQuestion question">
-				<h4>Q2 多选题</h4>
+			<div className="TextQuestion question" data-value={this.props.index}>
+				<h4>Q{this.props.index} <input type="text" placeholder="文本题"/></h4>
 				<div className="multiCheck"><input type="checkBox"/>此题是否必填</div>
-				<input type="text"/>
+				<textarea rows="6" cols="60"></textarea>
 				<div className="moveBtn">
 					<a href="javascript:;" onClick={this.props.moveUp}>上移</a>
 					<a href="javascript:;" onClick={this.props.moveDown}>下移</a>
@@ -74,7 +74,8 @@ class MsgEdit extends React.Component{
 		super(props);
 		this.state = {
 			questionListArr: []
-		}
+		};
+		this.key = 0;
 	}
 
 	addQuestion = (ev) => {
@@ -96,20 +97,38 @@ class MsgEdit extends React.Component{
 		}
 	}
 
-	moveUp = ev => {
+	// moveUp = ev => {
+	// 	alert('moveUp');
+	// 	let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
+	// 		currentNode = ev.target.parentNode.parentNode,
+	// 		questionListArr = this.state.questionListArr,
+	// 		index = currentNode.getAttribute('data-value');
+	// 	if (questionListDom.firstChild != currentNode) {
+	// 		// questionListDom.insertBefore(currentNode,currentNode.previousSibling);
+	// 		questionListArr.splice(index-2,0,questionListArr[index-1]);
+	// 		questionListArr.splice(questionListArr[index],0,);
+	// 	}
+	// 	this.setState({
+	// 		questionListArr:questionListArr
+	// 	});
+	// 	ev.stopPropagation();
+	// 	ev.preventDefault();
+	// }
+	moveUp = (ev) => {
 		alert('moveUp');
-		let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
-			currentNode = ev.target.parentNode.parentNode;
-		if (questionListDom.firstChild != currentNode) {
-			questionListDom.insertBefore(currentNode,currentNode.previousSibling);
+		let	questionListArr = this.state.questionListArr,
+			index = ev.target.parentNode.parentNode.getAttribute('data-value');
+		if (questionListArr.length != 1) {
+			alert(index);
+			let node = questionListArr[index-1];
+			questionListArr.push(node);
 		}
-		
-		ev.stopPropagation();
-		ev.preventDefault();
+		this.setState({
+			questionListArr:questionListArr
+		});
 	}
 
 	moveDown = ev => {
-		alert('moveDown');
 		let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
 			currentNode = ev.target.parentNode.parentNode;
 		if (questionListDom.lastChild == currentNode || questionListDom.childNodes.length ==1) {
@@ -124,7 +143,6 @@ class MsgEdit extends React.Component{
 	}
 
 	reUse = ev => {
-		alert('reUse');
 		let questionListDom = ReactDom.findDOMNode(this.refs.questionList),
 			currentNode = ev.target.parentNode.parentNode,
 			cloneNodes = currentNode.cloneNode(true);		//无法克隆子节点的事件处理程序，jquery的$().clone(true)可以
@@ -146,7 +164,7 @@ class MsgEdit extends React.Component{
 
 	addRadioBox = ev => {
 		let questionListArr = this.state.questionListArr;
-		questionListArr.push(<SingleQuestion key={questionListArr.length-1} moveUp={this.moveUp} moveDown={this.moveDown} reUse={this.reUse} deleteQuestion={this.deleteQuestion}/>)
+		questionListArr.push(<SingleQuestion key={++this.key} index={questionListArr.length+1} moveUp={this.moveUp} moveDown={this.moveDown} reUse={this.reUse} deleteQuestion={this.deleteQuestion}/>)
 		
 
 		this.setState({
@@ -158,7 +176,7 @@ class MsgEdit extends React.Component{
 
 	addCheckBox = ev => {
 		let questionListArr = this.state.questionListArr;
-		questionListArr.push(<MultiQuestion key={questionListArr.length-1} moveUp={this.moveUp} moveDown={this.moveDown} reUse={this.reUse} deleteQuestion={this.deleteQuestion}/>)
+		questionListArr.push(<MultiQuestion key={++this.key} index={questionListArr.length+1} moveUp={this.moveUp} moveDown={this.moveDown} reUse={this.reUse} deleteQuestion={this.deleteQuestion}/>)
 		
 		
 		this.setState({
@@ -170,7 +188,7 @@ class MsgEdit extends React.Component{
 
 	addTextBox = ev => {
 		let questionListArr = this.state.questionListArr;
-		questionListArr.push(<TextQuestion key={questionListArr.length-1} moveUp={this.moveUp} moveDown={this.moveDown} reUse={this.reUse} deleteQuestion={this.deleteQuestion}/>)
+		questionListArr.push(<TextQuestion key={++this.key} index={questionListArr.length+1} moveUp={this.moveUp} moveDown={this.moveDown} reUse={this.reUse} deleteQuestion={this.deleteQuestion}/>)
 		
 		
 		this.setState({
